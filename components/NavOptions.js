@@ -1,21 +1,52 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, FlatList, Image } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
+const data = [
+  {
+    id: "123",
+    title: "Awareness",
+    image: "http://clipart-library.com/images/gTeEeygnc.png",
+    screen: "AwareScreen",
+  },
+  {
+    id: "456",
+    title: "Stop Watch",
+    image: "http://clipart-library.com/images/BigE5M4AT.png",
+    screen: "StopWatchScreen", // Change in future...
+  },
+];
 // Navigate to different functionality
-const NavOptions = ({ navigation }) => {
+const NavOptions = () => {
+  const navigation = useNavigation();
   return (
-    <View>
-      <TouchableOpacity
-        style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
-        onPress={() => navigation.navigate("AwareScreen")}
-      >
-        <Text>Aware</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
-        <Text>Stop watch</Text>
-      </TouchableOpacity>
-    </View>
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.id}
+      horizontal
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate(item.screen)}
+          style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+        >
+          <View>
+            <Image
+              style={{ width: 100, height: 120, resizeMode: "contain" }}
+              source={{ uri: item.image }}
+            />
+            <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+            <Icon
+              style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+              name="arrowright"
+              color="white"
+              type="antdesign"
+            />
+          </View>
+        </TouchableOpacity>
+      )}
+    />
   );
 };
 
