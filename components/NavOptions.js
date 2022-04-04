@@ -26,17 +26,19 @@ const NavOptions = () => {
       data={data}
       keyExtractor={(item) => item.id}
       horizontal
+      style={tw`flex`}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
-          style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+          style={tw`p-2 pl-6 pb-8 pt-4 rounded-xl bg-gray-200 m-4 mt-48 w-40`}
         >
           <View>
             <Image
-              style={{ width: 100, height: 120, resizeMode: "contain" }}
+              style={{ width: 100, height: 140, resizeMode: "contain" }}
               source={{ uri: item.image }}
             />
             <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+
             <Icon
               style={tw`p-2 bg-black rounded-full w-10 mt-4`}
               name="arrowright"

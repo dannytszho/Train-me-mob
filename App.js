@@ -1,5 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import AwareScreen from "./screens/AwareScreen";
 import StopWatchScreen from "./screens/StopWatchScreen";
@@ -31,7 +29,6 @@ export default function App() {
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
-        {/* <HomeScreen /> */}
       </NavigationContainer>
     </SafeAreaProvider>
   );
